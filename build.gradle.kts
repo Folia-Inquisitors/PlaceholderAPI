@@ -25,9 +25,10 @@ repositories {
 dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.1")
     implementation("net.kyori:adventure-platform-bukkit:4.3.1")
-    implementation("io.github.projectunified:minelib-scheduler-canceller:1.0.0")
-    implementation("io.github.projectunified:minelib-scheduler-global:1.0.0")
-    implementation("io.github.projectunified:minelib-scheduler-async:1.0.0")
+    val minelibVersion = "1.0.1"
+    implementation("io.github.projectunified:minelib-scheduler-canceller:$minelibVersion")
+    implementation("io.github.projectunified:minelib-scheduler-global:$minelibVersion")
+    implementation("io.github.projectunified:minelib-scheduler-async:$minelibVersion")
 
     compileOnly("org.spigotmc:spigot-api:1.20-R0.1-SNAPSHOT")
     compileOnlyApi("org.jetbrains:annotations:23.0.0")
