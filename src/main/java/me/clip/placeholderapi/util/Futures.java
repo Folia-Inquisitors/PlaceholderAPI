@@ -20,6 +20,7 @@
 
 package me.clip.placeholderapi.util;
 
+import io.github.projectunified.minelib.scheduler.global.GlobalScheduler;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -27,7 +28,6 @@ import java.util.function.BiConsumer;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
@@ -40,11 +40,7 @@ public final class Futures {
       @NotNull final CompletableFuture<T> future,
       @NotNull final BiConsumer<T, Throwable> consumer) {
     future.whenComplete((value, exception) -> {
-      if (Bukkit.isPrimaryThread()) {
-        consumer.accept(value, exception);
-      } else {
-        Bukkit.getScheduler().runTask(plugin, () -> consumer.accept(value, exception));
-      }
+        GlobalScheduler.get(plugin).run(() -> consumer.accept(value, exception));
     });
   }
 

@@ -20,6 +20,8 @@
 
 package me.clip.placeholderapi;
 
+import io.github.projectunified.minelib.scheduler.canceller.TaskCanceller;
+import io.github.projectunified.minelib.scheduler.global.GlobalScheduler;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -162,7 +164,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
 
     HandlerList.unregisterAll(this);
 
-    Bukkit.getScheduler().cancelTasks(this);
+    TaskCanceller.get(this).cancelAll();
 
     adventure.close();
     adventure = null;
@@ -250,8 +252,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
       Class.forName("org.bukkit.event.server.ServerLoadEvent");
       new ServerLoadEventListener(this);
     } catch (final ClassNotFoundException ignored) {
-      Bukkit.getScheduler()
-          .runTaskLater(this, () -> getLocalExpansionManager().load(Bukkit.getConsoleSender()), 1);
+      GlobalScheduler.get(this).run(() -> getLocalExpansionManager().load(Bukkit.getConsoleSender()));
     }
   }
 
