@@ -25,7 +25,7 @@ repositories {
 dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.1")
     implementation("net.kyori:adventure-platform-bukkit:4.3.1")
-    val minelibVersion = "1.0.1"
+    val minelibVersion = "1.0.2"
     implementation("io.github.projectunified:minelib-scheduler-canceller:$minelibVersion")
     implementation("io.github.projectunified:minelib-scheduler-global:$minelibVersion")
     implementation("io.github.projectunified:minelib-scheduler-async:$minelibVersion")
