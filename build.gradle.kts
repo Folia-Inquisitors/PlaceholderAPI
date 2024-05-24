@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "me.clip"
-version = "2.11.6-DEV-${System.getProperty("BUILD_NUMBER")}"
+version = "2.11.7-DEV-${System.getProperty("BUILD_NUMBER")}"
 
 description = "An awesome placeholder provider!"
 
@@ -24,7 +24,7 @@ repositories {
 
 dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.1")
-    implementation("net.kyori:adventure-platform-bukkit:4.3.1")
+    implementation("net.kyori:adventure-platform-bukkit:4.3.2")
     val minelibVersion = "1.0.2"
     implementation("io.github.projectunified:minelib-scheduler-canceller:$minelibVersion")
     implementation("io.github.projectunified:minelib-scheduler-global:$minelibVersion")
@@ -93,6 +93,8 @@ tasks {
         relocate("org.bstats", "me.clip.placeholderapi.metrics")
         relocate("net.kyori", "me.clip.placeholderapi.libs.kyori")
         relocate("io.github.projectunified.minelib", "me.clip.placeholderapi.libs.minelib")
+
+        exclude("META-INF/versions/**")
     }
 
     test {
